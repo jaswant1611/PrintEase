@@ -132,7 +132,7 @@ def order():
     color=request.form.get('color','B&W'); sides=request.form.get('sides','Single'); paper=request.form.get('paper','A4')
     printing,service,discount,total=calculate(pages,copies,color,sides,paper,bool(u['member']),u['orders']==0)
     c=con(); c.execute('''INSERT INTO orders(token,customer_id,filename,stored,pages,copies,color,sides,paper,printing,service,discount,total)
-      VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',(token,u['id'],saved_name,stored,pages,copies,color,sides,paper,printing,service,discount,total))
+      VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''',(token,u['id'],saved_name,stored,pages,copies,color,sides,paper,printing,service,discount,total))
     c.execute('UPDATE customers SET orders=orders+1 WHERE id=?',(u['id'],)); c.commit(); c.close()
     return jsonify(ok=True,token=token,total=total,pages=pages,auto_pages=bool(auto),status='Waiting')
 
