@@ -5,7 +5,7 @@ from datetime import datetime
 import sqlite3, hashlib, os, uuid, time
 
 BASE = Path(__file__).resolve().parent
-DATA = BASE / 'data'
+DATA = path(os.environ.get('PRINTEASE_DATA_DIR', BASE / 'data'))
 UPLOADS = DATA / 'uploads'
 DB = DATA / 'printease.db'
 UPLOADS.mkdir(parents=True, exist_ok=True)
